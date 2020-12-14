@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+ADDRESS_TYPE = (
+    ('Office', 'Office'),
+    ('Home', 'Home'),
+    ('Commercial', 'Commercial'),
+)
+
 
 class UserManager(BaseUserManager):
 
@@ -38,3 +44,37 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         ordering = ('-created_at',)
+
+
+class Category(models.Model):
+    category_name = models.CharField(default='', max_length=100)
+
+
+class Address(models.Model):
+    """Address model"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(default='block', max_length=500, null=True, blank=True)
+    mobile_number = models.IntegerField()
+    landmark = models.CharField(default='', max_length=300)
+    city = models.CharField(default='', max_length=100)
+    address_type = models.CharField(choices=ADDRESS_TYPE, max_length=10)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class OrderItem(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    name = models.CharField(default='', max_length=100)
+    price = models.DecimalField(decimal_places=2, max_digits=4)
+    quantity = models.IntegerField()
+    total = models.DecimalField(default=0.0, decimal_places=2, max_digits=5)
+    order_id = models.CharField(default='', max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    item = models.ManyToManyField(OrderItem)
+    created_at = models.DateTimeField(auto_now_add=True)
