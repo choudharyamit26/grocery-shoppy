@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.views.generic import View, TemplateView, CreateView
+from django.views.generic import View, TemplateView, CreateView, ListView, DetailView
 from django.contrib import messages
+from django.db.models import Q
 from django.contrib.auth import get_user_model, login
 from .forms import SignUpForm
-from .models import User
+from .models import User, Category, Product, Order, SpecialOfferProduct
 
 user = get_user_model()
 
@@ -12,7 +13,14 @@ class HomeView(View):
     template_name = 'index.html'
 
     def get(self, request, *args, **kwargs):
-        return render(self.request, 'index.html')
+        categories = Category.objects.all()
+        nuts = Product.objects.filter(category__category_name='Nuts')
+        oil = Product.objects.filter(category__category_name='Oil')
+        pasta = Product.objects.filter(category__category_name='Pasta & Noodles')
+        print(pasta)
+        spl = SpecialOfferProduct.objects.all()
+        return render(self.request, 'index.html',
+                      {'categories': categories, 'nuts': nuts, 'oil': oil, 'pasta': pasta, 'spl': spl})
 
     def post(self, request, *args, **kwargs):
         print(self.request.POST)
@@ -92,3 +100,124 @@ class SignUpView(CreateView):
     template_name = 'base.html'
     success_url = 'src:home'
     form_class = SignUpForm
+
+
+class ContactView(TemplateView):
+    template_name = 'contact.html'
+
+
+class FaqView(TemplateView):
+    template_name = 'faqs.html'
+
+
+class PrivacyPolicyView(TemplateView):
+    template_name = 'privacy.html'
+
+
+class TermsOfUseView(TemplateView):
+    template_name = 'terms.html'
+
+
+class FilterByCategory(View):
+    model = Product
+    template_name = 'category.html'
+
+    def get(self, request, *args, **kwargs):
+        category_name = self.request.GET.get('category')
+        try:
+            category_obj = Category.objects.get(category_name=category_name)
+            print(category_obj.category_name)
+            products = Product.objects.filter(category=category_obj.id)
+            print(products)
+            context = {
+                'category': category_name,
+                'products': products
+            }
+            return render(self.request, 'category.html', context)
+        except Exception as e:
+            print(e)
+            context = {
+                'category': category_name,
+            }
+            return render(self.request, 'category.html', context)
+
+
+class MyOrdersView(ListView):
+    model = Order
+    template_name = 'orders.html'
+
+    def get(self, request, *args, **kwargs):
+        orders = self.model.objects.filter(user=self.request.user)
+        if orders.count() > 0:
+            context = {
+                'orders': orders
+            }
+            return render(self.request, 'orders.html', context)
+        else:
+            return render(self.request, 'orders.html')
+
+
+class OrderDetail(DetailView):
+    model = Order
+    template_name = 'order-detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        order_obj = Order.objects.get(id=self.kwargs.get('pk'))
+
+        # print(Order.item.all()[0].get_order_item_total)
+        total = 0
+        for order in order_obj.item.all():
+            # for order in order.item.all():
+            print(order.get_order_item_total())
+            total += order.get_order_item_total()
+        print(total)
+        try:
+            context['total'] = total
+        except Exception as e:
+            print(e)
+        return context
+
+
+class ProductDetail(DetailView):
+    model = Product
+    template_name = 'single.html'
+
+
+class SPlOfferDetail(DetailView):
+    model = SpecialOfferProduct
+    template_name = 'single.html'
+
+
+class SearchView(View):
+    model = Product
+    template_name = 'product.html'
+
+    def get(self, request, *args, **kwargs):
+        products = Product.objects.all()
+        return render(self.request, 'product.html', {'products': products})
+
+    def post(self, request, *args, **kwargs):
+        qs = self.request.POST['searchedVal']
+        print(qs)
+        products = Product.objects.filter(Q(category__category_name__icontains=qs.capitalize()) |
+                                          Q(name__icontains=qs))
+        print(products)
+        print(self.request.META['HTTP_REFERER'])
+        if qs is '':
+            print(self.request.path_info)
+            messages.error(self.request, "Cannot search for empty.Please enter some text.")
+            return redirect(self.request.META['HTTP_REFERER'])
+        elif products.count() > 0:
+            return render(self.request, 'product.html', {'products': products})
+        else:
+            messages.error(self.request, "No result found")
+            return redirect(self.request.META['HTTP_REFERER'])
+
+
+class CheckoutView(ListView):
+    model = Order
+    template_name = 'checkout.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(self.request, 'checkout.html')

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <div class="agileinfo-ads-display col-md-12">
+        <div class="wrapper">
+            <div class="product-sec1">
+                <div class="Category">
+                    <h3> Order Detail </h3>
+                    <hr>
+                    <div class="row"><label class="col-md-6">Order Id:</label>{{object.id}}</div>
+                    <div class="row"><label class="col-md-6">User Id:</label>{{object.user.id}}</div>
+
+                    <div class="row"><label class="col-md-6">Order date:</label> {{object.created_at|date:'M. d, Y'}}
+                    </div>
+                    <div class="row"><label class="col-md-6">User name:</label>{{object.user.name}}</div>
+                    <div class="row"><label class="col-md-6">Total:</label>{{total}}</div>
+                    <div class="row"><label class="col-md-6">Email id :</label> {{object.user.email}}</div>
+                    <div class="row"><label class="col-md-6">Delivery Address:</label>{{object.address.name}}</div>
+                    <div class="row"><label class="col-md-6">Delivery Address LandMark:</label>{{object.address.landmark}}
+                    </div>
+                    <div class="row"><label class="col-md-6">City:</label>{{object.address.city}}</div>
+                    <div class="row"><label class="col-md-6">Delivery Address Type:</label>{{object.address.address_type}}
+                    </div>
+                    <div class="row"><label class="col-md-6">Mobile Number:</label>{{object.address.mobile_number}}
+                    </div>
+                    <hr>
+                </div>
+                <div class="TableList">
+                    <div class="dragscroll">
+                        <table id="example" class="table table-striped table-bordered table-responsive" cellpadding="0"
+                               width="100%">
+                            <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Name of item</th>
+                                <th>Price of item</th>
+                                <th>Quantity of item</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for obj in object.item.all %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{obj.product.name}}</td>
+                                <td>{{obj.product.price}}</td>
+                                <td>{{obj.quantity}}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/colResizable-1.6.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>
+
+{% endblock body %}

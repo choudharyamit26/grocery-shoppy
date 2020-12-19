@@ -49,6 +49,31 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Category(models.Model):
     category_name = models.CharField(default='', max_length=100)
 
+    def __str__(self):
+        return self.category_name
+
+
+class SpecialOfferProduct(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    name = models.CharField(default='', max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(decimal_places=2, max_digits=4)
+    img = models.ImageField()
+
+    def __str__(self):
+        return self.name
+
+
+class Product(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    name = models.CharField(default='', max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(decimal_places=2, max_digits=4)
+    img = models.ImageField()
+
+    def __str__(self):
+        return self.name
+
 
 class Address(models.Model):
     """Address model"""
@@ -64,17 +89,24 @@ class Address(models.Model):
 
 
 class OrderItem(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    name = models.CharField(default='', max_length=100)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     total = models.DecimalField(default=0.0, decimal_places=2, max_digits=5)
     order_id = models.CharField(default='', max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_order_item_total(self):
+        total = self.product.price * self.quantity
+        return total
 
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     item = models.ManyToManyField(OrderItem)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Payment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

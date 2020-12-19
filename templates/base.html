@@ -1,5 +1,6 @@
 {% load static %}
 <html lang="en">
+
 <head>
     <title>Grocery Shoppy an Ecommerce</title>
     <!--/tags -->
@@ -8,13 +9,16 @@
     <meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
     <script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+
+
 
 
     </script>
@@ -33,58 +37,75 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <script src="{% static 'ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' %}"></script>
 <script>
-(function(){
-	if(typeof _bsa !== 'undefined' && _bsa) {
-  		// format, zoneKey, segment:value, options
-  		_bsa.init('flexbar', 'CKYI627U', 'placement:w3layoutscom');
-  	}
-})();
+    (function () {
+        if (typeof _bsa !== 'undefined' && _bsa) {
+            // format, zoneKey, segment:value, options
+            _bsa.init('flexbar', 'CKYI627U', 'placement:w3layoutscom');
+        }
+    })();
 
 
-</script>
-<script>
-(function(){
-if(typeof _bsa !== 'undefined' && _bsa) {
-	// format, zoneKey, segment:value, options
-	_bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
-}
-})();
+
 
 
 </script>
 <script>
-(function(){
-	if(typeof _bsa !== 'undefined' && _bsa) {
-  		// format, zoneKey, segment:value, options
-  		_bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
-  	}
-})();
+    (function () {
+        if (typeof _bsa !== 'undefined' && _bsa) {
+            // format, zoneKey, segment:value, options
+            _bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
+        }
+    })();
+
+
+
+
+
+</script>
+<script>
+    (function () {
+        if (typeof _bsa !== 'undefined' && _bsa) {
+            // format, zoneKey, segment:value, options
+            _bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
+        }
+    })();
+
+
+
 
 
 </script>
 <!--<script>(function(v,d,o,ai){ai=d.createElement("script");ai.defer=true;ai.async=true;ai.src=v.location.protocol+o;d.head.appendChild(ai);})(window, document, "//a.vdo.ai/core/w3layouts_V2/vdo.ai.js?vdo=34");</script>-->
-<div id="codefund"><!-- fallback content --></div>
+<div id="codefund">
+    <!-- fallback content -->
+</div>
 <script src="https://ethicalads.io/?ref=codefund" async="async"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src='https://www.googletagmanager.com/gtag/js?id=UA-149859901-1'></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'UA-149859901-1');
+    gtag('config', 'UA-149859901-1');
+
+
+
 
 
 </script>
 
 <script>
-     window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-     ga('create', 'UA-149859901-1', 'demo.w3layouts.com');
-     ga('require', 'eventTracker');
-     ga('require', 'outboundLinkTracker');
-     ga('require', 'urlChangeTracker');
-     ga('send', 'pageview');
+    window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+    ga('create', 'UA-149859901-1', 'demo.w3layouts.com');
+    ga('require', 'eventTracker');
+    ga('require', 'outboundLinkTracker');
+    ga('require', 'urlChangeTracker');
+    ga('send', 'pageview');
+
+
+
 
 
 </script>
@@ -118,7 +139,10 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                     <a href="{% url 'logout' %}"><span class="fa fa-sign-out"></span>Logout</a>
                 </li>
                 <li>
-                    <span class="fa fa-user"></span>{{user}}
+                    <span class="fa fa-user"></span>{{user.name}}
+                </li>
+                <li>
+                    <a href="{% url 'src:my-orders' %}"><span class="fa fa-shopping-bag"></span>My Orders</a>
                 </li>
                 {% else %}
                 <li>
@@ -135,8 +159,9 @@ if(typeof _bsa !== 'undefined' && _bsa) {
             <!-- search -->
             <div class="agileits_search">
                 <form action="#" method="post">
-                    <input name="Search" type="search" placeholder="How can we help you today?" required="">
-                    <button type="submit" class="btn btn-default" aria-label="Left Align">
+                    {% csrf_token %}
+                    <input name="Search" type="search" placeholder="How can we help you today?" required="" id="input">
+                    <button type="button" class="btn btn-default" aria-label="Left Align" id="search">
                         <span class="fa fa-search" aria-hidden="true"> </span>
                     </button>
                 </form>
@@ -145,13 +170,9 @@ if(typeof _bsa !== 'undefined' && _bsa) {
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <form action="#" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class="w3view-cart" type="submit" name="submit" value="">
-                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                        </button>
-                    </form>
+                    <button class="w3view-cart" id="cart">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
             <!-- //cart details -->
@@ -617,11 +638,12 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                             <input type="email" placeholder="E-mail" name="email" required="">
                         </div>
                         <div class="styled-input">
-                            <input type="password" placeholder="Password" name="password" id="password1" required="">
+                            <input type="password" placeholder="Password" name="password" id="password1"
+                                   required="">
                         </div>
                         <div class="styled-input">
-                            <input type="password" placeholder="Confirm Password" name="confirm_password" id="password2"
-                                   required="">
+                            <input type="password" placeholder="Confirm Password" name="confirm_password"
+                                   id="password2" required="">
                         </div>
                         <button type="submit" value="Sign Up" class="btn btn-primary">Sign Up</button>
                     </form>
@@ -655,6 +677,9 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                     <option value="Frozen Food">Frozen Food</option>
                     <option value="Bread &amp; Bakery">Bread & Bakery</option>
                     <option value="Sweets">Sweets</option>
+                    <option value="Nuts">Nuts</option>
+                    <option value="Oil">Oil</option>
+                    <option value="Pasta & Noodles">Pasta & Noodles</option>
                 </select>
             </form>
         </div>
@@ -664,8 +689,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-1"
-                                aria-expanded="false">
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -683,136 +707,11 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                             <li class="active">
                                 <a class="nav-stylehead" href="{% url 'src:about-us' %}">About Us</a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">Kitchen
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="agile_inner_drop_nav_info">
-                                        <div class="col-sm-4 multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <li>
-                                                    <a href="product.html">Bakery</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Baking Supplies</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Coffee, Tea & Beverages</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Dried Fruits, Nuts</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Sweets, Chocolate</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Spices & Masalas</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Jams, Honey & Spreads</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4 multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <li>
-                                                    <a href="product.html">Pickles</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Pasta & Noodles</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Rice, Flour & Pulses</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Sauces & Cooking Pastes</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Snack Foods</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Oils, Vinegars</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product.html">Meat, Poultry & Seafood</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4 multi-gd-img">
-                                            <img src="{% static 'images/nav.png' %}" alt="">
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">Household
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="agile_inner_drop_nav_info">
-                                        <div class="col-sm-6 multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <li>
-                                                    <a href="product2.html">Kitchen & Dining</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Detergents</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Utensil Cleaners</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Floor & Other Cleaners</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Disposables, Garbage Bag</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Repellents & Fresheners</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html"> Dishwash</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-6 multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <li>
-                                                    <a href="product2.html">Pet Care</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Cleaning Accessories</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Pooja Needs</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Crackers</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Festive Decoratives</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Plasticware</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product2.html">Home Care</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </ul>
-                            </li>
                             <li class="">
-                                <a class="nav-stylehead" href="faqs.html">Faqs</a>
+                                <a class="nav-stylehead" href="{% url 'src:faq' %}">Faqs</a>
                             </li>
                             <li>
-                                <a class="" href="contact.html">Contact</a>
+                                <a class="" href="{% url 'src:contact-us' %}">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -853,11 +752,14 @@ if(typeof _bsa !== 'undefined' && _bsa) {
     <div class="container">
         <!-- footer first section -->
         <p class="footer-main">
-            <span>"Grocery Shoppy"</span> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+            <span>"Grocery Shoppy"</span> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+            fugit,
             sed quia consequuntur
-            magni dolores eos qui ratione voluptatem sequi nesciunt.Sed ut perspiciatis unde omnis iste natus error sit
+            magni dolores eos qui ratione voluptatem sequi nesciunt.Sed ut perspiciatis unde omnis iste natus error
+            sit
             voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+            quasi
             architecto
             beatae vitae dicta sunt explicabo.</p>
         <!-- //footer first section -->
@@ -954,19 +856,16 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                             <a href="{% url 'src:about-us' %}">About Us</a>
                         </li>
                         <li>
-                            <a href="contact.html">Contact Us</a>
+                            <a href="{% url 'src:contact-us' %}">Contact Us</a>
                         </li>
                         <li>
-                            <a href="help.html">Help</a>
+                            <a href="{% url 'src:faq' %}">Faqs</a>
                         </li>
                         <li>
-                            <a href="faqs.html">Faqs</a>
+                            <a href="{% url 'src:terms-of-use' %}">Terms of use</a>
                         </li>
                         <li>
-                            <a href="terms.html">Terms of use</a>
-                        </li>
-                        <li>
-                            <a href="privacy.html">Privacy Policy</a>
+                            <a href="{% url 'src:privacy-policy' %}">Privacy Policy</a>
                         </li>
                     </ul>
                 </div>
@@ -1008,7 +907,8 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                 <h5>Shop online with the best deals & offers</h5>
                 <p>Now Get Upto 40% Off On Everyday Essential Products Shown On The Offer Page. The range includes
                     Grocery, Personal Care,
-                    Baby Care, Pet Supplies, Healthcare and Other Daily Need Products. Discount May Vary From Product To
+                    Baby Care, Pet Supplies, Healthcare and Other Daily Need Products. Discount May Vary From
+                    Product To
                     Product.</p>
             </div>
             <!-- brands -->
@@ -1169,50 +1069,52 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 <!-- popup modal (for signin & signup)-->
 <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
 <script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
-
-		});
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+        });
 
 
 </script>
 <!-- Large modal -->
 <!-- <script>
-    $('#').modal('show');
+$('#').modal('show');
 </script> -->
 <!-- //popup modal (for signin & signup)-->
 
 <!-- cart-js -->
 <script src="{% static 'js/minicart.js' %}"></script>
 <script>
-		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
+        paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+        paypalm.minicartk.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
 
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
+            if (total < 3) {
+                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
+
+
+
 
 
 </script>
@@ -1221,20 +1123,23 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 <!-- price range (top products) -->
 <script src="{% static 'js/jquery-ui.js' %}"></script>
 <script>
-		//<![CDATA[
-		$(window).load(function () {
-			$("#slider-range").slider({
-				range: true,
-				min: 0,
-				max: 9000,
-				values: [50, 6000],
-				slide: function (event, ui) {
-					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-				}
-			});
-			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+        //<![CDATA[
+        $(window).load(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 9000,
+                values: [50, 6000],
+                slide: function (event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
 
-		}); //]]>
+        }); //]]>
+
+
+
 
 
 </script>
@@ -1243,31 +1148,34 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 <!-- flexisel (for special offers) -->
 <script src="{% static 'js/jquery.flexisel.js' %}"></script>
 <script>
-		$(window).load(function () {
-			$("#flexiselDemo1").flexisel({
-				visibleItems: 3,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 3000,
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-				responsiveBreakpoints: {
-					portrait: {
-						changePoint: 480,
-						visibleItems: 1
-					},
-					landscape: {
-						changePoint: 640,
-						visibleItems: 2
-					},
-					tablet: {
-						changePoint: 768,
-						visibleItems: 2
-					}
-				}
-			});
+        $(window).load(function () {
+            $("#flexiselDemo1").flexisel({
+                visibleItems: 3,
+                animationSpeed: 1000,
+                autoPlay: true,
+                autoPlaySpeed: 3000,
+                pauseOnHover: true,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 1
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 2
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 2
+                    }
+                }
+            });
 
-		});
+        });
+
+
+
 
 
 </script>
@@ -1275,20 +1183,23 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 <!-- password-script -->
 <script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
 
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+
+
+
 
 
 </script>
@@ -1302,40 +1213,101 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 <script src="{% static 'js/move-top.js' %}"></script>
 <script src="{% static 'js/easing.js' %}"></script>
 <script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
 
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+
+
+
 
 
 </script>
-<!-- //end-smooth-scrolling -->
 
-<!-- smooth-scrolling-of-move-up -->
 <script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-			*/
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
 
-		});
+        });
+
+
+
 
 
 </script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
+<script>
+        $("#agileinfo-nav_search").change(function () {
+            var category = $(this).val();
+            console.log('category name', category)
+            var protocol = window.location.protocol
+            var hostname = window.location.hostname
+            var port = window.location.port
+            var url = protocol + "//" + hostname + ":" + port + "/filter-by-category" + "/?category=" + category;
+            $.ajax({
+                url: url,
+                success: function (data) {
+                    window.location.href = url
+                }
+            });
+        });
 
+
+</script>
+<script>
+        $("#search").click(function () {
+            var searchedVal = $('#input').val();
+            console.log('category name', searchedVal)
+            var protocol = window.location.protocol
+            var hostname = window.location.hostname
+            var port = window.location.port
+            var url = protocol + "//" + hostname + ":" + port + "/search/";
+            $.ajax({
+                url: url,
+                method:'POST',
+                data:{
+                    'searchedVal':searchedVal,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (data) {
+                    $('body').html(data)
+                }
+            });
+        });
+
+
+</script>
+<script>
+            $("#cart").click(function () {
+            console.log('category name',)
+            var protocol = window.location.protocol
+            var hostname = window.location.hostname
+            var port = window.location.port
+            var url = protocol + "//" + hostname + ":" + port + "/cart/";
+            $.ajax({
+                url: url,
+                success: function (data) {
+                    window.location.href = url
+                }
+            });
+        });
+
+</script>
 </body>
+
 </html>
