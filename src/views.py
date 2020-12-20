@@ -1,4 +1,6 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import View, TemplateView, CreateView, ListView, DetailView
 from django.contrib import messages
 from django.db.models import Q
@@ -17,13 +19,12 @@ class HomeView(View):
         nuts = Product.objects.filter(category__category_name='Nuts')
         oil = Product.objects.filter(category__category_name='Oil')
         pasta = Product.objects.filter(category__category_name='Pasta & Noodles')
-        print(pasta)
         spl = SpecialOfferProduct.objects.all()
         return render(self.request, 'index.html',
                       {'categories': categories, 'nuts': nuts, 'oil': oil, 'pasta': pasta, 'spl': spl})
 
     def post(self, request, *args, **kwargs):
-        print(self.request.POST)
+
         name = self.request.POST.get('name' or None)
         email = self.request.POST.get('email' or None)
         password = self.request.POST.get('password' or None)
@@ -220,4 +221,18 @@ class CheckoutView(ListView):
     template_name = 'checkout.html'
 
     def get(self, request, *args, **kwargs):
-        return render(self.request, 'checkout.html')
+        cart_item_list = self.request.GET.getlist('cartItemList[]')
+        products = []
+        count = self.request.GET.get('count')
+        for obj in cart_item_list:
+            products.append(Product.objects.get(id=obj))
+        # request.session['count'] = count
+        # request.session['products'] = products
+        print(count)
+        print(products)
+        return render(self.request, 'checkout.html', {'count': count, 'products': products})
+        # return redirect('/cart/', {'count': count, 'products': products})
+        # x = '/src/cart/'
+        # url = reverse('cart', kwargs={'count': count, 'products': products})
+        # # # print(self.request.path_info)
+        # return HttpResponseRedirect(url)

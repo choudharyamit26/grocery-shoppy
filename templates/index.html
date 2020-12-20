@@ -29,6 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
     </script>
     <!--//tags -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all"/>
@@ -66,6 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
 </script>
 <script>
 (function(){
@@ -88,6 +90,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <script>
 (function(){
@@ -96,6 +99,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
   		_bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
   	}
 })();
+
 
 
 
@@ -137,6 +141,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 
 <script>
@@ -160,11 +165,13 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <script async src="{% static 'js/autotrack.js' %}"></script>
 
+
 <meta name="robots" content="noindex">
-<body onload="onload=cartCount();">
+<body onload="restoreCart()">
 <div class="header-most-top">
     <p>Grocery Offer Zone Top Deals & Discounts</p>
 </div>
@@ -224,7 +231,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                    <button class="w3view-cart" type="submit" name="submit" value="" >
+                    <button class="w3view-cart" type="submit" name="submit" value="">
                         <i class="fa fa-cart-arrow-down cart" aria-hidden="true" id="count">&nbsp;&nbsp;</i>
                     </button>
                 </div>
@@ -496,7 +503,8 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                                     <del>$280.00</del>
                                 </div>
 
-                                <button type="button" class="btn btn-primary" id="{{object.id}}" onclick="addToCart({{object.id}})">ADD TO CART
+                                <button type="button" class="btn btn-primary" id="{{object.id}}"
+                                        onclick="addToCart({{object.id}})">ADD TO CART
                                 </button>
                             </div>
                         </div>
@@ -544,7 +552,9 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                                     <del>$110.00</del>
                                 </div>
 
-                                <button type="button" class="btn btn-primary" id="{{object.id}}" onclick="addToCart({{object.id}})">ADD TO CART</button>
+                                <button type="button" class="btn btn-primary" id="{{object.id}}"
+                                        onclick="addToCart({{object.id}})">ADD TO CART
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -574,7 +584,9 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                                     <del>$25.00</del>
                                 </div>
 
-                                <button type="button" class="btn btn-primary" id="{{object.id}}" onclick="addToCart({{object.id}})">ADD TO CART</button>
+                                <button type="button" class="btn btn-primary" id="{{object.id}}"
+                                        onclick="addToCart({{object.id}})">ADD TO CART
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -595,7 +607,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 <!--					<i></i>-->
 <!--				</span>-->
 <!--        </h3>-->
-        <!-- //tittle heading -->
+<!-- //tittle heading -->
 <!--        <div class="content-bottom-in">-->
 <!--            <ul id="flexiselDemo1">-->
 <!--                {% for object in spl %}-->
@@ -995,6 +1007,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <!-- Large modal -->
 <!-- <script>
@@ -1024,6 +1037,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 			}
 		});
 
+
 </script>
 <!-- //cart-js -->
 
@@ -1044,6 +1058,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
 
 		}); //]]>
+
 
 
 
@@ -1103,6 +1118,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <!-- //flexisel (for special offers) -->
 
@@ -1122,6 +1138,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 				document.getElementById("password2").setCustomValidity('');
 			//empty string means no validation error
 		}
+
 
 
 
@@ -1159,6 +1176,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <!-- //end-smooth-scrolling -->
 
@@ -1178,6 +1196,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 			});
 
 		});
+
 
 
 
@@ -1211,6 +1230,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <script>
         $("#search").click(function () {
@@ -1235,22 +1255,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
-</script>
 
-<script>
-            $(".cart").click(function () {
-            console.log('clicked cart')
-            var protocol = window.location.protocol
-            var hostname = window.location.hostname
-            var port = window.location.port
-            var url = protocol + "//" + hostname + ":" + port + "/cart/";
-            $.ajax({
-                url: url,
-                success: function (data) {
-                    window.location.href = url
-                }
-            });
-        });
 </script>
 <script>
 
@@ -1316,6 +1321,46 @@ if(typeof _bsa !== 'undefined' && _bsa) {
             // }
 
         }
+
+
+</script>
+<script>
+    function restoreCart(){
+    console.log("Restore Cart function called")
+        if (localStorage.getItem("cartItemList") != null){
+            var cart_list = JSON.parse(localStorage.getItem("cartItemList"))
+            document.querySelector("#count").innerHTML = cart_list.length;
+            for (i = 0; i < cart_list.length; i++) {
+                document.getElementById(cart_list[i]).innerHTML = "Remove from cart";
+            }
+        }
+    }
+
+    $(document).ready(restoreCart());
+
+</script>
+
+<script>
+            $(".cart").click(function () {
+            console.log('clicked cart')
+            var protocol = window.location.protocol
+            var hostname = window.location.hostname
+            var port = window.location.port
+            var url = protocol + "//" + hostname + ":" + port + "/cart/";
+            $.ajax({
+                url: url,
+                data:{
+                'cartItemList':JSON.parse(localStorage.getItem("cartItemList")),
+                'count':JSON.parse(localStorage.getItem("cartItemList")).length,
+                },
+                success: function (data) {
+<!--                    window.location.href = url-->
+                    window.history.pushState({'href':url},'',url);
+                    $('body').html(data)
+
+                }
+            });
+        });
 
 </script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
