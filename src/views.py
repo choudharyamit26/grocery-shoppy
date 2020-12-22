@@ -237,7 +237,14 @@ class CheckoutView(ListView):
         return render(self.request, 'checkout.html', {'count': len(incoming_id_list), 'products': products})
 
     def post(self, request, *args, **kwargs):
-        print(self.request.POST)
+        # print(self.request.GET.getlist('cartItemList'))
+        # print(self.request.POST)
+        name = self.request.POST['name']
+        mobile_number = self.request.POST['mobile_number']
+        landmark = self.request.POST['landmark']
+        city = self.request.POST['city']
+        address_type = self.request.POST['address_type']
+        print(name, mobile_number, landmark, city, address_type)
         if self.request.user.is_anonymous:
             messages.error(self.request, 'Please login to place order')
             return redirect('src:home')
