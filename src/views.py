@@ -5,8 +5,9 @@ from django.views.generic import View, TemplateView, CreateView, ListView, Detai
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth import get_user_model, login
-from .forms import SignUpForm
-from .models import User, Category, Product, Order, SpecialOfferProduct
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import SignUpForm, AddressForm
+from .models import User, Category, Product, Order, SpecialOfferProduct, Payment
 
 user = get_user_model()
 
@@ -219,20 +220,53 @@ class SearchView(View):
 class CheckoutView(ListView):
     model = Order
     template_name = 'checkout.html'
+    form_class = AddressForm
 
     def get(self, request, *args, **kwargs):
-        cart_item_list = self.request.GET.getlist('cartItemList[]')
+        # print(self.request.GET.getlist('cartItemList'))
+        x = self.request.GET.getlist('cartItemList')
+        incoming_id_list = []
+        for y in x:
+            print(y)
+            for z in y:
+                if z.isdigit():
+                    incoming_id_list.append(int(z))
         products = []
-        count = self.request.GET.get('count')
-        for obj in cart_item_list:
+        for obj in incoming_id_list:
             products.append(Product.objects.get(id=obj))
-        # request.session['count'] = count
-        # request.session['products'] = products
-        print(count)
-        print(products)
-        return render(self.request, 'checkout.html', {'count': count, 'products': products})
-        # return redirect('/cart/', {'count': count, 'products': products})
-        # x = '/src/cart/'
-        # url = reverse('cart', kwargs={'count': count, 'products': products})
-        # # # print(self.request.path_info)
-        # return HttpResponseRedirect(url)
+        return render(self.request, 'checkout.html', {'count': len(incoming_id_list), 'products': products})
+
+    def post(self, request, *args, **kwargs):
+        print(self.request.POST)
+        if self.request.user.is_anonymous:
+            messages.error(self.request, 'Please login to place order')
+            return redirect('src:home')
+        else:
+            return redirect('src:payment')
+
+
+class CreateOrder(LoginRequiredMixin, CreateView):
+    model = Order
+    login_url = 'src:home'
+    form_class = AddressForm
+
+    def post(self, request, *args, **kwargs):
+        print(self.request.POST)
+        return redirect('src:my-orders')
+
+
+class PaymentView(View):
+    model = Payment
+    template_name = 'payment.html'
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_anonymous:
+            messages.error(self.request, 'Please login to make payment')
+            return redirect('src:home')
+        return render(self.request, 'payment.html')
+
+    def post(self, request, *args, **kwargs):
+        if self.request.user.is_anonymous:
+            messages.error(self.request, 'Please login to make payment')
+            return redirect('src:home')
+        return redirect('src:my-orders')

@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import HomeView, AboutUs, SignUpView, ContactView, FaqView, PrivacyPolicyView, TermsOfUseView, \
-    FilterByCategory, MyOrdersView,OrderDetail,ProductDetail,SPlOfferDetail,SearchView,CheckoutView
+    FilterByCategory, MyOrdersView, OrderDetail, ProductDetail, SPlOfferDetail, SearchView, CheckoutView,CreateOrder,PaymentView
 
 app_name = 'src'
 
@@ -21,4 +21,6 @@ urlpatterns = [
     path('spl-offer/<int:pk>/', SPlOfferDetail.as_view(), name='spl-offer'),
     path('search/', SearchView.as_view(), name='search'),
     path('cart/', CheckoutView.as_view(), name='cart'),
+    path('create-order/', CreateOrder.as_view(), name='create-order'),
+    path('payment/', PaymentView.as_view(), name='payment'),
 ]

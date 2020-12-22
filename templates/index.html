@@ -30,6 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
     </script>
     <!--//tags -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all"/>
@@ -68,6 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
 </script>
 <script>
 (function(){
@@ -76,6 +78,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 	_bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
 }
 })();
+
 
 
 
@@ -114,19 +117,15 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
-</script>
-<!--<script>(function(v,d,o,ai){ai=d.createElement("script");ai.defer=true;ai.async=true;ai.src=v.location.protocol+o;d.head.appendChild(ai);})(window, document, "//a.vdo.ai/core/w3layouts_V2/vdo.ai.js?vdo=34");</script>-->
-<div id="codefund"><!-- fallback content --></div>
-<script src="https://ethicalads.io/?ref=codefund" async="async"></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src='https://www.googletagmanager.com/gtag/js?id=UA-149859901-1'></script>
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-149859901-1');
+
 
 
 
@@ -151,6 +150,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
      ga('require', 'outboundLinkTracker');
      ga('require', 'urlChangeTracker');
      ga('send', 'pageview');
+
 
 
 
@@ -1008,6 +1008,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <!-- Large modal -->
 <!-- <script>
@@ -1038,6 +1039,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 		});
 
 
+
 </script>
 <!-- //cart-js -->
 
@@ -1058,6 +1060,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
 
 		}); //]]>
+
 
 
 
@@ -1119,6 +1122,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <!-- //flexisel (for special offers) -->
 
@@ -1138,6 +1142,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 				document.getElementById("password2").setCustomValidity('');
 			//empty string means no validation error
 		}
+
 
 
 
@@ -1177,6 +1182,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <!-- //end-smooth-scrolling -->
 
@@ -1196,6 +1202,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 			});
 
 		});
+
 
 
 
@@ -1231,6 +1238,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 
 
 
+
 </script>
 <script>
         $("#search").click(function () {
@@ -1252,6 +1260,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                 }
             });
         });
+
 
 
 
@@ -1323,6 +1332,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
         }
 
 
+
 </script>
 <script>
     function restoreCart(){
@@ -1337,6 +1347,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
     }
 
     $(document).ready(restoreCart());
+
 
 </script>
 
@@ -1354,13 +1365,15 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                 'count':JSON.parse(localStorage.getItem("cartItemList")).length,
                 },
                 success: function (data) {
-<!--                    window.location.href = url-->
-                    window.history.pushState({'href':url},'',url);
-                    $('body').html(data)
-
+<!--                        window.location.href = url-->
+                    window.location.href = url + "?cartItemList=" + JSON.stringify(localStorage.getItem("cartItemList"))
+<!--                    window.location.href = url + "?cartItemList=" + JSON.parse(localStorage.getItem("cartItemList")) +"$" + "count=" + JSON.parse(localStorage.getItem("cartItemList")).length-->
+<!--                    window.history.pushState({'href':url},'',url);-->
+<!--                    $('body').html(data)-->
                 }
             });
         });
+
 
 </script>
 <script src="{% static 'js/bootstrap.js' %}"></script>

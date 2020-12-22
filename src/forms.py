@@ -1,5 +1,11 @@
 from django import forms
-from .models import User
+from .models import User, Address
+
+ADDRESS_TYPE = (
+    ('Office', 'Office'),
+    ('Home', 'Home'),
+    ('Commercial', 'Commercial'),
+)
 
 
 class SignUpForm(forms.Form):
@@ -8,3 +14,10 @@ class SignUpForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
 
+
+class AddressForm(forms.Form):
+    name = forms.CharField()
+    mobile_number = forms.IntegerField()
+    landmark = forms.CharField()
+    city = forms.CharField()
+    address_type = forms.CharField()

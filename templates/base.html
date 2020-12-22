@@ -6,8 +6,6 @@
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -16,10 +14,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
-
-
-
-
 
     </script>
     <!--//tags -->
@@ -44,10 +38,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
     })();
 
-
-
-
-
 </script>
 <script>
     (function () {
@@ -61,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
 </script>
 <script>
     (function () {
@@ -69,6 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             _bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
         }
     })();
+
 
 
 
@@ -94,6 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
 </script>
 
 <script>
@@ -103,6 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     ga('require', 'outboundLinkTracker');
     ga('require', 'urlChangeTracker');
     ga('send', 'pageview');
+
 
 
 
@@ -168,6 +162,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!-- //search -->
             <!-- cart details -->
+            {% if 'cart' in request.path  or 'payment' in request.path %}
+            {% else %}
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
                     <button class="w3view-cart" id="cart">
@@ -175,6 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </button>
                 </div>
             </div>
+            {% endif %}
             <!-- //cart details -->
             <div class="clearfix"></div>
             <div class="content-wrapper">
@@ -1084,6 +1081,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
 
 
+
 </script>
 <!-- Large modal -->
 <!-- <script>
@@ -1117,6 +1115,7 @@ $('#').modal('show');
 
 
 
+
 </script>
 <!-- //cart-js -->
 
@@ -1137,6 +1136,7 @@ $('#').modal('show');
             $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
 
         }); //]]>
+
 
 
 
@@ -1178,6 +1178,7 @@ $('#').modal('show');
 
 
 
+
 </script>
 <!-- //flexisel (for special offers) -->
 
@@ -1197,6 +1198,7 @@ $('#').modal('show');
                 document.getElementById("password2").setCustomValidity('');
             //empty string means no validation error
         }
+
 
 
 
@@ -1227,6 +1229,7 @@ $('#').modal('show');
 
 
 
+
 </script>
 
 <script>
@@ -1249,6 +1252,7 @@ $('#').modal('show');
 
 
 
+
 </script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <script>
@@ -1266,6 +1270,7 @@ $('#').modal('show');
                 }
             });
         });
+
 
 
 </script>
@@ -1291,6 +1296,7 @@ $('#').modal('show');
         });
 
 
+
 </script>
 <script>
             $("#cart").click(function () {
@@ -1306,6 +1312,28 @@ $('#').modal('show');
                 }
             });
         });
+
+
+</script>
+<script src="{% static 'js/easyResponsiveTabs.js' %}"></script>
+
+<script>
+		$(document).ready(function () {
+			//Horizontal Tab
+			$('#parentHorizontalTab').easyResponsiveTabs({
+				type: 'default', //Types: default, vertical, accordion
+				width: 'auto', //auto or any width like 600px
+				fit: true, // 100% fit in a container
+				tabidentify: 'hor_1', // The tab groups identifier
+				activate: function (event) { // Callback function if tab is switched
+					var $tab = $(this);
+					var $info = $('#nested-tabInfo');
+					var $name = $('span', $info);
+					$name.text($tab.text());
+					$info.show();
+				}
+			});
+		});
 
 </script>
 </body>
