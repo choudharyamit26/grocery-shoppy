@@ -16,7 +16,7 @@ class SignUpForm(forms.Form):
 
 
 class AddressForm(forms.Form):
-    name = forms.CharField()
+    add_name = forms.CharField()
     mobile_number = forms.IntegerField()
     landmark = forms.CharField()
     city = forms.CharField()

@@ -69,6 +69,7 @@ class Product(models.Model):
     name = models.CharField(default='', max_length=100)
     description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=4)
+    quantity = models.IntegerField(default=0)
     img = models.ImageField()
 
     def __str__(self):
@@ -78,7 +79,7 @@ class Product(models.Model):
 class Address(models.Model):
     """Address model"""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(default='block', max_length=500, null=True, blank=True)
+    add_name = models.CharField(default='block', max_length=500, null=True, blank=True)
     mobile_number = models.IntegerField()
     landmark = models.CharField(default='', max_length=300)
     city = models.CharField(default='', max_length=100)
@@ -90,7 +91,7 @@ class Address(models.Model):
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(default=1)
     total = models.DecimalField(default=0.0, decimal_places=2, max_digits=5)
     order_id = models.CharField(default='', max_length=100)
 
@@ -105,8 +106,18 @@ class Order(models.Model):
     item = models.ManyToManyField(OrderItem)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ('-created_at',)
+    # def get_order_total(self):
+    #     total = 0
+    #     for obj in self.item.all():
+    #         total += obj.product.price * obj.quantity
+    #         print('from model ', total)
+    #     return total
+
 
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    payment_method = models.CharField(default='', max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
