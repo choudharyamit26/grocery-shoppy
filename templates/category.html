@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
 {% if products %}
-<div class="container">
+<div class="container" onload="restoreCart();">
     <div class="agileinfo-ads-display col-md-12">
         <div class="wrapper">
             <div class="product-sec1">
@@ -13,7 +13,8 @@
                             <img src="{{product.img.url}}" alt="">
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
-                                    <a href="{% url 'src:product-detail' product.id %}" class="link-product-add-cart">Quick View</a>
+                                    <a href="{% url 'src:product-detail' product.id %}" class="link-product-add-cart">Quick
+                                        View</a>
                                 </div>
                             </div>
                             <span class="product-new-top">New</span>
@@ -27,20 +28,9 @@
                                 <del>$280.00</del>
                             </div>
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                <form action="#" method="post">
-                                    <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart"/>
-                                        <input type="hidden" name="add" value="1"/>
-                                        <input type="hidden" name="business" value=" "/>
-                                        <input type="hidden" name="item_name" value="Almonds, 100g"/>
-                                        <input type="hidden" name="amount" value="149.00"/>
-                                        <input type="hidden" name="discount_amount" value="1.00"/>
-                                        <input type="hidden" name="currency_code" value="USD"/>
-                                        <input type="hidden" name="return" value=" "/>
-                                        <input type="hidden" name="cancel_return" value=" "/>
-                                        <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                    </fieldset>
-                                </form>
+                                <button type="button" class="btn btn-primary" id="{{product.id}}"
+                                        onclick="addToCart({{product.id}})">ADD TO CART
+                                </button>
                             </div>
 
                         </div>
@@ -65,6 +55,25 @@
         </div>
     </div>
 </div>
-
 {% endif %}
+<script>
+        function restoreCart(){
+        console.log("Restore Cart function called from category",localStorage.getItem("cartItemList"))
+        if (localStorage.getItem("cartItemList") != null){
+            var cart_list = JSON.parse(localStorage.getItem("cartItemList"))
+            document.querySelector("#count").innerHTML = cart_list.length;
+            for (i = 0; i < cart_list.length; i++) {
+                console.log('Loop variable ',cart_list[i])
+                if (cart_list[i] !=null){
+                document.getElementById(cart_list[i]).innerHTML = "Remove from cart";
+                }
+                else{
+                console.log('inside else case',cart_list[i])
+                }
+            }
+        }
+    }
+    $(document).ready(restoreCart());
+
+</script>
 {% endblock body %}

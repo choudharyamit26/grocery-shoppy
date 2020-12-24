@@ -182,7 +182,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
         <!-- header-bot-->
         <div class="col-md-4 logo_agile">
             <h1>
-                <a href="index.html">
+                <a href="{% url 'src:home' %}">
                     <span>G</span>rocery
                     <span>S</span>hoppy
                     <img src="{% static 'images/logo2.png' %}" alt=" ">
@@ -709,57 +709,12 @@ if(typeof _bsa !== 'undefined' && _bsa) {
         <!-- footer third section -->
         <div class="footer-info w3-agileits-info">
             <!-- footer categories -->
-            <div class="col-sm-5 address-right">
-                <div class="col-xs-6 footer-grids">
-                    <h3>Categories</h3>
-                    <ul>
-                        <li>
-                            <a href="product.html">Grocery</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Fruits</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Soft Drinks</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Dishwashers</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Biscuits & Cookies</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Baby Diapers</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-xs-6 footer-grids agile-secomk">
-                    <ul>
-                        <li>
-                            <a href="product.html">Snacks & Beverages</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Bread & Bakery</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Sweets</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Chocolates & Biscuits</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Personal Care</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Dried Fruits & Nuts</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="col-sm-12 address-right">
                 <div class="clearfix"></div>
             </div>
             <!-- //footer categories -->
             <!-- quick links -->
-            <div class="col-sm-5 address-right">
+            <div class="col-sm-12 address-right">
                 <div class="col-xs-6 footer-grids">
                     <h3>Quick Links</h3>
                     <ul>
@@ -1290,43 +1245,16 @@ if(typeof _bsa !== 'undefined' && _bsa) {
             console.log("Full cart list", cart_len)
 
         }
-
-
-        function cartCount() {
-            // if (cart_len.length == 'undefined'){
-            //     document.querySelector("#count").innerHTML = 0;
-            // }
-            // else{
-            var cart_len = JSON.parse(localStorage.getItem("cartItemList"))
-            console.log("Cart len fetched on load", cart_len)
-            if (cart_len == undefined) {
-                document.querySelector("#count").innerHTML = 0;
-            }
-            else {
-                document.querySelector("#count").innerHTML = cart_len.length;
-                for (i = 0; i < cart_len.length; i++) {
-                    console.log(cart_len[i])
-                    document.getElementById(cart_len[i]).innerHTML = "Remove from cart";
-                }
-            }
-
-             console.log("Cart item count",cart_len.length)
-             console.log("Full cart list",cart_len)
-
-            // }
-
-        }
-
-
-
 </script>
 <script>
     function restoreCart(){
-    console.log("Restore Cart function called")
+        console.log("Restore Cart function called ",localStorage.getItem("cartItemList"))
         if (localStorage.getItem("cartItemList") != null){
             var cart_list = JSON.parse(localStorage.getItem("cartItemList"))
+            console.log(localStorage.getItem("cartItemList"))
             document.querySelector("#count").innerHTML = cart_list.length;
             for (i = 0; i < cart_list.length; i++) {
+                console.log('On load function ',i)
                 document.getElementById(cart_list[i]).innerHTML = "Remove from cart";
             }
         }

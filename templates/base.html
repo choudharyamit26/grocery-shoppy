@@ -15,6 +15,7 @@
             window.scrollTo(0, 1);
         }
 
+
     </script>
     <!--//tags -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all"/>
@@ -38,6 +39,7 @@
         }
     })();
 
+
 </script>
 <script>
     (function () {
@@ -52,6 +54,7 @@
 
 
 
+
 </script>
 <script>
     (function () {
@@ -60,6 +63,7 @@
             _bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
         }
     })();
+
 
 
 
@@ -87,6 +91,7 @@
 
 
 
+
 </script>
 
 <script>
@@ -96,6 +101,7 @@
     ga('require', 'outboundLinkTracker');
     ga('require', 'urlChangeTracker');
     ga('send', 'pageview');
+
 
 
 
@@ -162,12 +168,12 @@
             </div>
             <!-- //search -->
             <!-- cart details -->
-            {% if 'cart' in request.path  or 'payment' in request.path %}
+            {% if 'cart' in request.path or 'payment' in request.path %}
             {% else %}
             <div class="top_nav_right">
                 <div class="wthreecartaits wthreecartaits2 cart cart box_1">
                     <button class="w3view-cart" id="cart">
-                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true" id="count"></i>
                     </button>
                 </div>
             </div>
@@ -659,27 +665,27 @@
 <!-- navigation -->
 <div class="ban-top">
     <div class="container">
-        <div class="agileits-navi_search">
-            <form action="#" method="post">
-                <select id="agileinfo-nav_search" name="agileinfo_search" required="">
-                    <option value="">All Categories</option>
-                    <option value="Kitchen">Kitchen</option>
-                    <option value="Household">Household</option>
-                    <option value="Snacks &amp; Beverages">Snacks & Beverages</option>
-                    <option value="Personal Care">Personal Care</option>
-                    <option value="Gift Hampers">Gift Hampers</option>
-                    <option value="Fruits &amp; Vegetables">Fruits & Vegetables</option>
-                    <option value="Baby Care">Baby Care</option>
-                    <option value="Soft Drinks &amp; Juices">Soft Drinks & Juices</option>
-                    <option value="Frozen Food">Frozen Food</option>
-                    <option value="Bread &amp; Bakery">Bread & Bakery</option>
-                    <option value="Sweets">Sweets</option>
-                    <option value="Nuts">Nuts</option>
-                    <option value="Oil">Oil</option>
-                    <option value="Pasta & Noodles">Pasta & Noodles</option>
-                </select>
-            </form>
-        </div>
+<!--        <div class="agileits-navi_search">-->
+<!--            <form action="#" method="post">-->
+<!--                <select id="agileinfo-nav_search" name="agileinfo_search" required="">-->
+<!--                    <option value="">All Categories</option>-->
+<!--                    <option value="Kitchen">Kitchen</option>-->
+<!--                    <option value="Household">Household</option>-->
+<!--                    <option value="Snacks &amp; Beverages">Snacks & Beverages</option>-->
+<!--                    <option value="Personal Care">Personal Care</option>-->
+<!--                    <option value="Gift Hampers">Gift Hampers</option>-->
+<!--                    <option value="Fruits &amp; Vegetables">Fruits & Vegetables</option>-->
+<!--                    <option value="Baby Care">Baby Care</option>-->
+<!--                    <option value="Soft Drinks &amp; Juices">Soft Drinks & Juices</option>-->
+<!--                    <option value="Frozen Food">Frozen Food</option>-->
+<!--                    <option value="Bread &amp; Bakery">Bread & Bakery</option>-->
+<!--                    <option value="Sweets">Sweets</option>-->
+<!--                    <option value="Nuts">Nuts</option>-->
+<!--                    <option value="Oil">Oil</option>-->
+<!--                    <option value="Pasta & Noodles">Pasta & Noodles</option>-->
+<!--                </select>-->
+<!--            </form>-->
+<!--        </div>-->
         <div class="top_nav_left">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -795,57 +801,9 @@
         <!-- footer third section -->
         <div class="footer-info w3-agileits-info">
             <!-- footer categories -->
-            <div class="col-sm-5 address-right">
-                <div class="col-xs-6 footer-grids">
-                    <h3>Categories</h3>
-                    <ul>
-                        <li>
-                            <a href="product.html">Grocery</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Fruits</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Soft Drinks</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Dishwashers</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Biscuits & Cookies</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Baby Diapers</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-xs-6 footer-grids agile-secomk">
-                    <ul>
-                        <li>
-                            <a href="product.html">Snacks & Beverages</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Bread & Bakery</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Sweets</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Chocolates & Biscuits</a>
-                        </li>
-                        <li>
-                            <a href="product2.html">Personal Care</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Dried Fruits & Nuts</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
             <!-- //footer categories -->
             <!-- quick links -->
-            <div class="col-sm-5 address-right">
+            <div class="col-sm-12 address-right">
                 <div class="col-xs-6 footer-grids">
                     <h3>Quick Links</h3>
                     <ul>
@@ -1082,6 +1040,7 @@
 
 
 
+
 </script>
 <!-- Large modal -->
 <!-- <script>
@@ -1116,6 +1075,7 @@ $('#').modal('show');
 
 
 
+
 </script>
 <!-- //cart-js -->
 
@@ -1136,6 +1096,7 @@ $('#').modal('show');
             $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
 
         }); //]]>
+
 
 
 
@@ -1179,6 +1140,7 @@ $('#').modal('show');
 
 
 
+
 </script>
 <!-- //flexisel (for special offers) -->
 
@@ -1198,6 +1160,7 @@ $('#').modal('show');
                 document.getElementById("password2").setCustomValidity('');
             //empty string means no validation error
         }
+
 
 
 
@@ -1230,6 +1193,7 @@ $('#').modal('show');
 
 
 
+
 </script>
 
 <script>
@@ -1253,6 +1217,7 @@ $('#').modal('show');
 
 
 
+
 </script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <script>
@@ -1270,6 +1235,7 @@ $('#').modal('show');
                 }
             });
         });
+
 
 
 
@@ -1297,6 +1263,7 @@ $('#').modal('show');
 
 
 
+
 </script>
 <script>
             $("#cart").click(function () {
@@ -1312,6 +1279,7 @@ $('#').modal('show');
                 }
             });
         });
+
 
 
 </script>
@@ -1334,6 +1302,92 @@ $('#').modal('show');
 				}
 			});
 		});
+
+
+</script>
+<script>
+        function restoreCart(){
+        console.log("Restore Cart function called ",localStorage.getItem("cartItemList"))
+        if (localStorage.getItem("cartItemList") != null){
+            var cart_list = JSON.parse(localStorage.getItem("cartItemList"))
+            document.querySelector("#count").innerHTML = cart_list.length;
+<!--            for (i = 0; i < cart_list.length; i++) {-->
+<!--                document.getElementById(cart_list[i]).innerHTML = "Remove from cart";-->
+<!--            }-->
+        }
+    }
+
+    $(document).ready(restoreCart());
+
+</script>
+<script>
+            $(".cart").click(function () {
+            console.log('clicked cart')
+            var protocol = window.location.protocol
+            var hostname = window.location.hostname
+            var port = window.location.port
+            var url = protocol + "//" + hostname + ":" + port + "/cart/";
+            $.ajax({
+                url: url,
+                data:{
+                'cartItemList':JSON.parse(localStorage.getItem("cartItemList")),
+                'count':JSON.parse(localStorage.getItem("cartItemList")).length,
+                },
+                success: function (data) {
+<!--                        window.location.href = url-->
+                    window.location.href = url + "?cartItemList=" + JSON.stringify(localStorage.getItem("cartItemList"))
+<!--                    window.location.href = url + "?cartItemList=" + JSON.parse(localStorage.getItem("cartItemList")) +"$" + "count=" + JSON.parse(localStorage.getItem("cartItemList")).length-->
+<!--                    window.history.pushState({'href':url},'',url);-->
+<!--                    $('body').html(data)-->
+                }
+            });
+        });
+
+
+
+</script>
+
+<script>
+
+        function addToCart(id) {
+            if (localStorage.getItem("cartItemList") == null) {
+                console.log("Inside Null case fresh list")
+                var temp = []
+                temp.push(id)
+                document.getElementById(id).innerHTML = "Remove from cart"
+                localStorage.setItem("cartItemList", JSON.stringify(temp))
+                // var cart_len = localStorage.getItem("cartItemList")
+                // document.querySelector("#count").innerHTML = cart_len.length;
+                // console.log("Cart item count",cart_len.length)
+                // console.log("Full cart list",cart_len)
+            }
+            else {
+                var temp_list = JSON.parse(localStorage.getItem("cartItemList"))
+                console.log("Temp Item List", temp_list)
+                if (temp_list.includes(id)) {
+                    console.log("Inside remove existing element case")
+                    const index = temp_list.indexOf(id);
+                    temp_list.splice(index, 1)
+                    document.getElementById(id).innerHTML = "Add to cart"
+                    localStorage.setItem("cartItemList", JSON.stringify(temp_list))
+                }
+                else {
+                    console.log("append new element case")
+                    temp_list.push(id)
+                    localStorage.setItem("cartItemList", JSON.stringify(temp_list))
+                    document.getElementById(id).innerHTML = "Remove from cart"
+
+                }
+            }
+            var cart_len = JSON.parse(localStorage.getItem("cartItemList"))
+            document.querySelector("#count").innerHTML = cart_len.length;
+            console.log("Cart item count", cart_len.length)
+            console.log("Full cart list", cart_len)
+
+        }
+
+
+
 
 </script>
 </body>
