@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="ads-grid">
+    <div class="container">
+        <div class="agileinfo-ads-display col-md-12 w3l-rightpro">
+            <div class="wrapper">
+                <div class="product-sec1">
+                    {% for object in products %}
+                    <div class="col-xs-4 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem">
+                            <div class="men-thumb-item">
+                                <img src="{{object.img.url}}" alt="">
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        <a href="{% url 'src:product-detail' object.id %}" class="link-product-add-cart">Quick View</a>
+                                    </div>
+                                </div>
+                                <span class="product-new-top">New</span>
+                            </div>
+                            <div class="item-info-product ">
+                                <h4>
+                                    <a href="{% url 'src:product-detail' object.id %}">{{object.name}}</a>
+                                </h4>
+                                <div class="info-product-price">
+                                    <span class="item_price">${{object.price}}</span>
+                                    <del>$1020.00</del>
+                                </div>
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                    <form action="#" method="post">
+                                        <fieldset>
+                                            <input type="hidden" name="cmd" value="_cart"/>
+                                            <input type="hidden" name="add" value="1"/>
+                                            <input type="hidden" name="business" value=" "/>
+                                            <input type="hidden" name="item_name" value="Zeeba Basmati Rice - 5 KG"/>
+                                            <input type="hidden" name="amount" value="950.00"/>
+                                            <input type="hidden" name="discount_amount" value="1.00"/>
+                                            <input type="hidden" name="currency_code" value="USD"/>
+                                            <input type="hidden" name="return" value=" "/>
+                                            <input type="hidden" name="cancel_return" value=" "/>
+                                            <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                        </fieldset>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

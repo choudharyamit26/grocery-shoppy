@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block body %}
+{% if products %}
+<div class="container" onload="restoreCart();">
+    <div class="agileinfo-ads-display col-md-12">
+        <div class="wrapper">
+            <div class="product-sec1">
+                <h3 class="heading-tittle">{{category}}</h3>
+                {% for product in products %}
+                <div class="col-md-4 product-men">
+                    <div class="men-pro-item simpleCart_shelfItem">
+                        <div class="men-thumb-item">
+                            <img src="{{product.img.url}}" alt="">
+                            <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
+                                    <a href="{% url 'src:product-detail' product.id %}" class="link-product-add-cart">Quick
+                                        View</a>
+                                </div>
+                            </div>
+                            <span class="product-new-top">New</span>
+                        </div>
+                        <div class="item-info-product ">
+                            <h4>
+                                <a href="{% url 'src:product-detail' product.id %}">{{product.name}}</a>
+                            </h4>
+                            <div class="info-product-price">
+                                <span class="item_price">${{product.price}}</span>
+                                <del>$280.00</del>
+                            </div>
+                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                <button type="button" class="btn btn-primary" id="{{product.id}}"
+                                        onclick="addToCart({{product.id}})">ADD TO CART
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container mt-5">
+    <div class="agileinfo-ads-display col-md-12">
+        <div class="wrapper">
+            <div class="product-sec1">
+                <h3 class="heading-tittle">{{category}}</h3>
+                <div class="item-info-product ">
+                    <h1>Currently no product available in this category</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<script>
+        function restoreCart(){
+        console.log("Restore Cart function called from category",localStorage.getItem("cartItemList"))
+        if (localStorage.getItem("cartItemList") != null){
+            var cart_list = JSON.parse(localStorage.getItem("cartItemList"))
+            document.querySelector("#count").innerHTML = cart_list.length;
+            for (i = 0; i < cart_list.length; i++) {
+                console.log('Loop variable ',cart_list[i])
+                if (cart_list[i] !=null){
+                document.getElementById(cart_list[i]).innerHTML = "Remove from cart";
+                }
+                else{
+                console.log('inside else case',cart_list[i])
+                }
+            }
+        }
+    }
+    $(document).ready(restoreCart());
+
+</script>
+{% endblock body %}
