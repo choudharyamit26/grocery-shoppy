@@ -25,11 +25,7 @@ SECRET_KEY = '&&%yv)q$ep-#bm-f)q$&@d2d7rknpi6wvjy6z!9agof!ebpcd('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
 ALLOWED_HOSTS = ['*']
-=======
-ALLOWED_HOSTS = []
->>>>>>> 0636a9357c344c74d2d40d7ef9082da6080ae25f
 
 # Application definition
 
@@ -42,10 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-<<<<<<< HEAD
     'django_extensions'
-=======
->>>>>>> 0636a9357c344c74d2d40d7ef9082da6080ae25f
 
 ]
 
@@ -110,14 +103,10 @@ AUTH_USER_MODEL = 'src.User'
 
 # Bootstrap version for crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-<<<<<<< HEAD
 GRAPH_MODELS = {
   'all_applications': True,
   'group_models': True,
 }
-=======
-
->>>>>>> 0636a9357c344c74d2d40d7ef9082da6080ae25f
 # Login redirect location
 LOGIN_REDIRECT_URL = 'src:home'
 LOGOUT_REDIRECT_URL = 'src:home'
@@ -139,13 +128,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
-=======
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
->>>>>>> 0636a9357c344c74d2d40d7ef9082da6080ae25f
 
 # Media files
 MEDIA_URL = '/media/'
