@@ -115,7 +115,11 @@ label{
     padding: 10px;
     font-size: 14px;
 	float: left;
+<<<<<<< HEAD
 	width:85%;
+=======
+	width:90%;
+>>>>>>> 0636a9357c344c74d2d40d7ef9082da6080ae25f
 	letter-spacing: 1px;
 }
 .agileits_search .btn-default {
